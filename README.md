@@ -28,7 +28,7 @@
 private_key_file = /root/.ssh/id_rsa
 ```
 
-### 2、一键部署:basketball_man:
+### 3、一键部署:basketball_man:
 
 ```shell
 # ansible-playbook -i hosts telegraf_install.yaml
