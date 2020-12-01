@@ -7,7 +7,7 @@
   - name: 03-安装Agent
     shell: sudo yum -y localinstall /root/telegraf-1.6.3-1.x86_64.rpm
   - name: 04-正在进行权限设定
-    shell: chmod o+rw /var/run/docker.sock
+    shell: sudo usermod -aG telegraf docker
   - name: 05-正在配置Agent监控
     copy: src=./etc/telegraf.conf dest=/etc/telegraf/
   - name: 06-正在修改配置文件监听IP
