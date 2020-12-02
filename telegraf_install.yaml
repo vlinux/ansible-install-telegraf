@@ -7,14 +7,14 @@
   - name: 03-安装Agent
     shell: sudo yum -y localinstall /root/telegraf-1.6.3-1.x86_64.rpm
   - name: 04-正在进行权限设定
-    shell: sudo usermod -aG telegraf docker
+    shell: sudo usermod -aG docker telegraf
   - name: 05-正在配置Agent监控
     copy: src=./etc/telegraf.conf dest=/etc/telegraf/
   - name: 06-正在修改配置文件监听IP
-    shell: sed -i 's/:9273/{{ ansible_facts.ens192.ipv4.address }}:9273/' /etc/telegraf/
+    shell: sed -i 's/:9273/{{ ansible_facts.ens192.ipv4.address }}:9273/' /etc/telegraf/telegraf.conf
   - name: 07-使用SYSTEMD启动Agent
     service: name=telegraf state=started
   - name: 08-将Agent加入开机自启
     systemd: name=telegraf enabled=yes
   - name: 09-清理安装包
-    shell: rm -rf  /root/telegraf-1.6.3-1.x86_64.rpm
+    shell: rm -rf  /root/telegraf-1.6.3-1.x86_64.*
