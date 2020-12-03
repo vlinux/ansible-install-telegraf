@@ -11,7 +11,7 @@
   - name: 05-正在配置Agent监控
     copy: src=./etc/telegraf.conf dest=/etc/telegraf/
   - name: 06-正在修改配置文件监听IP
-    shell: sed -i 's/:9273/{{ ansible_facts.ens192.ipv4.address }}:9273/' /etc/telegraf/telegraf.conf
+    shell: sed -i 's/:9273/{{ ansible_facts.eth0.ipv4.address }}:9273/' /etc/telegraf/telegraf.conf
   - name: 07-使用SYSTEMD启动Agent
     service: name=telegraf state=started
   - name: 08-将Agent加入开机自启
